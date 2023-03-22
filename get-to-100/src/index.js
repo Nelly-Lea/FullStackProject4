@@ -19,7 +19,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import 'bootstrap/dist/css/bootstrap.css'
 
-const myFirstElement = <h1>Hello React!</h1>
+import Sign_up from './component/sign_up';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(myFirstElement);
+ const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(myFirstElement);
+//ReactDOM.render(<Counter/>, document.getElementById("root"));
+
+root.render(<Sign_up/>);
+
+// root.render(myFirstElement);
+//ReactDOM.render(<Counter/>, document.getElementById("root"));
