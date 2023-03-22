@@ -21,7 +21,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 
 import Sign_up from './component/sign_up';
 
- const root = ReactDOM.createRoot(document.getElementById('root'));
+ const root = ReactDOM.createRoot(document.getElementById('root')) ;
 // root.render(myFirstElement);
 //ReactDOM.render(<Counter/>, document.getElementById("root"));
 
