@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import '../styles.css'
-
+import { Link } from 'react-router-dom';
 
 class Sign_up extends Component {
     constructor(props){
@@ -46,8 +46,7 @@ class Sign_up extends Component {
             localStorage.setItem("list_of_player", JSON.stringify(new_list_player))
         }
         localStorage.setItem(this.state.mail, JSON.stringify(player));
-       
-        
+
      }  
     render() { 
         const {name, firstname, mail}=this.state;
@@ -71,6 +70,12 @@ class Sign_up extends Component {
                     <input className='input_field' type="email" value={this.state.mail} onChange={this.handleMailChange} required></input><br />
                     <input className='submit_button' type="submit" value="Add Player"></input>
                 </form>
+        
+                <Link to="/game">
+                    <button variant="outlined">
+                     Play Game
+                    </button>
+                </Link>
             </div>
         );
     }
