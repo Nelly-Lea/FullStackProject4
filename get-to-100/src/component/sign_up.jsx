@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import '../styles.css'
 import { Link } from 'react-router-dom';
-
+import ListPlayers from './ListPlayers'
 class Sign_up extends Component {
     constructor(props){
         super(props)
@@ -14,6 +14,7 @@ class Sign_up extends Component {
     this.handleFirstNameChange=this.handleFirstNameChange.bind(this);
     this.handleMailChange=this.handleMailChange.bind(this);
     this.SubmitPlayer=this.SubmitPlayer.bind(this);
+    this.NewGame=this.NewGame.bind(this);
    }
    
      handleLastNameChange(event){
@@ -47,7 +48,10 @@ class Sign_up extends Component {
         }
         localStorage.setItem(this.state.mail, JSON.stringify(player));
 
-     }  
+     } 
+     NewGame(){
+        localStorage.clear();
+     } 
     render() { 
         const {name, firstname, mail}=this.state;
         return (
@@ -72,10 +76,12 @@ class Sign_up extends Component {
                 </form>
         
                 <Link to="/game">
-                    <button variant="outlined">
+                    <button variant="outlined" >
                      Play Game
                     </button>
                 </Link>
+                <button onClick={this.NewGame}>New Game</button>
+                <ListPlayers />
             </div>
         );
     }
