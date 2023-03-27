@@ -8,7 +8,8 @@ class Sign_up extends Component {
         this.state = { 
             lastname:'', 
             firstname:'',
-            mail:''
+            mail:'',
+           // enabled:false
          };
     this.handleLastNameChange=this.handleLastNameChange.bind(this);
     this.handleFirstNameChange=this.handleFirstNameChange.bind(this);
@@ -32,7 +33,8 @@ class Sign_up extends Component {
             lastname:this.state.lastname,
             firstname:this.state.firstname,
             mail:this.state.mail,
-            list_game:null
+            list_game:[],
+           // enabled: this.state.enabled
         }
         let list_of_player;
         list_of_player=JSON.parse(localStorage.getItem("list_of_player"));
@@ -43,6 +45,7 @@ class Sign_up extends Component {
             localStorage.setItem("list_of_player", JSON.stringify(list_of_player));
         }else{
             var new_list_player=[]
+            player.enabled=true
             new_list_player.push(player)
             localStorage.setItem("list_of_player", JSON.stringify(new_list_player))
         }
