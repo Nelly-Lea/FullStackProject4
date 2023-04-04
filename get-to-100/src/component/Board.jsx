@@ -5,10 +5,14 @@ class Board extends Component {
     constructor(props){
         super(props)
         this.state = { 
-            name:props.gamer.firstname,
+            //name:props.gamer.firstname,
+            gamer:props.gamer,
             number: Math.floor(Math.random() * (99 -0 + 1)) +0,
             step: 0, 
             score:props.gamer.list_game,
+            end_all_game: props.end_game,
+            end_current_game:false,
+            quit_game: false,
            // enabled: props.gamer.enabled
          };
          this.handleChange=this.handleChange.bind(this);
@@ -17,39 +21,62 @@ class Board extends Component {
          this.MultiplyTwo=this.MultiplyTwo.bind(this);
          this.DividTwo=this.DividTwo.bind(this);
          this.WinGame=this.WinGame.bind(this);
+          this.DisplayScore=this.DisplayScore.bind(this);
+          this.NewGame=this.NewGame.bind(this);
+         this.Quit=this.Quit.bind(this);
+         this.Enabled=this.Enabled.bind(this);
          
         }
+        // componentDidMount(){
+        //     this.DisplayScore(this.props.gamer.mail, this.state.step)
+        // }
          AddOne(){
             this.setState({number: this.state.number+1})
             this.setState({step: this.state.step+1})
-            this.handleChange();
-            this.WinGame(this.state.number+1, this.props.gamer.mail, this.state.step)
-            // this.state.number++;
-            // this.state.step++;
+           
+            if(this.state.number+1==100){
+                this.WinGame(this.state.number+1, this.props.gamer.mail, this.state.step)
+            }else{
+                this.handleChange();
+            }
+           // this.DisplayScore(this.props.gamer.mail, this.state.step)
          }
          MinusOne(){
           //  this.state.number--;
            // this.state.step++;
            this.setState({number: this.state.number-1})
            this.setState({step: this.state.step+1})
-           this.handleChange();
-           this.WinGame(this.state.number-1, this.props.gamer.mail, this.state.step)
+           if(this.state.number-1==100){
+            this.WinGame(this.state.number-1, this.props.gamer.mail, this.state.step)
+        }else{
+            this.handleChange();
+        }
+         
+           
          }
          MultiplyTwo(){
            // this.state.number=this.state.number*2;
            //this.state.step++;
            this.setState({number: this.state.number*2})
             this.setState({step: this.state.step+1})
-            this.handleChange();
+           if(this.state.number*2==100){
             this.WinGame(this.state.number*2, this.props.gamer.mail, this.state.step)
+        }else{
+            this.handleChange();
+        }
+         
          }
          DividTwo(){
            // this.state.number=this.state.number/2;
             //this.state.step++;
             this.setState({number: this.state.number/2})
             this.setState({step: this.state.step+1})
-            this.handleChange();
-            this.WinGame(this.state.number/2, this.props.gamer.mail, this.state.step)
+               if(this.state.number/2==100){
+                this.WinGame(this.state.number/2, this.props.gamer.mail, this.state.step)
+            }else{
+                this.handleChange();
+            }
+             
          }
          handleChange(){
             this.props.change_gamer()
@@ -64,37 +91,66 @@ class Board extends Component {
          }
          WinGame(number, mail, step){
           this.props.winGame(number, mail, step)
-          if(number==100){
+
             this.setState({ score: [...this.state.score, this.state.step + 1] })
-          }
+            //this.setState({end_all_game: true})
+            this.setState({end_current_game:true})
+            this.DisplayScore(this.props.gamer.mail, this.state.step)
+
           
-         
-            // if(number==100){
-            //     var win_player=JSON.parse(localStorage.getItem(this.props.gamer.mail))
-            //     win_player.list_game.push(this.state.step+1);
-            //     localStorage.removeItem(this.props.gamer.mail)
-            //     localStorage.setItem(this.props.gamer.mail, JSON.stringify(win_player))
-            //    // this.setState({score: this.state.score.push(this.state.step+1)})
-            //    this.setState({ score: [...this.state.score, this.state.step + 1] })
-            //     var list_gamers=JSON.parse(localStorage.getItem("list_of_player"))
-            //     for(var i=0; i<list_gamers.length; i++){
-            //           if(list_gamers[i].mail==win_player.mail){
-            //               list_gamers[i].list_game.push(this.state.step+1)
-            //           }
-            //     }
-            //     localStorage.removeItem("list_of_player")
-            //     localStorage.setItem("list_of_player", JSON.stringify(list_gamers))
-            //     window.alert(win_player.firstname +"won")
-            // }
+      
+         }
+         DisplayScore(mail, step){
+            //if(this.props.end_game){
+                console.log(this.state.end_all_game)
+              this.props.displayScore(mail,step+1)
+             // this.setState({score: this.state.score.push(this.state.step)}) // enlever +1
+              this.setState({ score: [...this.state.score, this.state.step+1] })
+           // }
+
+          }
+         NewGame(){
+            this.setState({
+                number: Math.floor(Math.random() * (99 -0 + 1)) +0,
+                step: 0,
+            })
+            this.setState({end_current_game:false})
+            //this.setState({quit_game:false});
+            //this.setState({end_all_game:false})
+            //this.props.endGame(this.props.gamer.mail, this.state.score)
+
+         }
+         Quit(){
+          //  this.setState({quit_game:true})
+            this.props.quit(this.state.gamer.mail)
          }
     render() {
         var list_score=this.state.score.map((item, index) =>(<span key={index}>{item} </span>));
     //     const listItems = numbers.map((number) =>
     // <li>{number}</li>
+    if(this.state.end_current_game  || this.state.end_all_game){
+        // this.DisplayScore(this.props.gamer.mail, this.state.step);
+        //this.EndGame(this.props.gamer.mail, this.state.score);
+        return (
+            <div>
+            <p>Gamer: {this.state.gamer.firstname}</p>
+            <span >{this.state.number}</span>
+            <button onClick={this.AddOne} disabled={!this.Enabled()}>+1</button>
+            <button onClick={this.MinusOne}disabled={!this.Enabled()}>-1</button>
+            <button onClick={this.MultiplyTwo}disabled={!this.Enabled()}>x2</button>
+            <button onClick={this.DividTwo}disabled={!this.Enabled()}>/2</button>
+            <p>Step: {this.state.step}</p>
+            <p>Your Score: {list_score}</p>
+            <button onClick={this.Quit} >Quit</button>
+            
+        </div>
+        );
+
+    }
   //);
         return (
             <div>
-                <p>Gamer: {this.state.name}</p>
+                <p>Gamer: {this.state.gamer.firstname}</p>
                 <span >{this.state.number}</span>
                 <button onClick={this.AddOne} disabled={!this.Enabled()}>+1</button>
                 <button onClick={this.MinusOne}disabled={!this.Enabled()}>-1</button>
@@ -103,6 +159,7 @@ class Board extends Component {
                 <p>Step: {this.state.step}</p>
                 <p>Your Score: {list_score}</p>
             </div>
+            
         );
     }
 }

@@ -41,7 +41,11 @@ class Sign_up extends Component {
             firstname:this.state.firstname,
             mail:this.state.mail,
             list_game:[],
-            list_joueur:[]
+            list_joueur:[],
+            list_score:[],//
+            step:0,//
+            number:Math.floor(Math.random() * (99 -0 + 1)) +0,//
+            end_game:false,
            // enabled: this.state.enabled
         }
         this.setState({
