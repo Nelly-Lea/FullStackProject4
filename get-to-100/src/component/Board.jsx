@@ -10,9 +10,10 @@ class Board extends Component {
             number: Math.floor(Math.random() * (99 -0 + 1)) +0,
             step: 0, 
             score:props.gamer.list_game,
-            end_all_game: props.end_game,
-            end_current_game:false,
-            quit_game: false,
+            end_game:false,
+            // end_all_game: props.end_game,
+            // end_current_game:false,
+            // quit_game: false,
            // enabled: props.gamer.enabled
          };
          this.handleChange=this.handleChange.bind(this);
@@ -20,10 +21,10 @@ class Board extends Component {
          this.MinusOne=this.MinusOne.bind(this);
          this.MultiplyTwo=this.MultiplyTwo.bind(this);
          this.DividTwo=this.DividTwo.bind(this);
-         this.WinGame=this.WinGame.bind(this);
-          this.DisplayScore=this.DisplayScore.bind(this);
+          this.WinGame=this.WinGame.bind(this);
+         this.DisplayScore=this.DisplayScore.bind(this);
           this.NewGame=this.NewGame.bind(this);
-         this.Quit=this.Quit.bind(this);
+          this.Quit=this.Quit.bind(this);
          this.Enabled=this.Enabled.bind(this);
          
         }
@@ -89,32 +90,33 @@ class Board extends Component {
             }
            
          }
-         WinGame(number, mail, step){
-          this.props.winGame(number, mail, step)
+         WinGame(){
+         // this.props.winGame(number, mail, step)
 
             this.setState({ score: [...this.state.score, this.state.step + 1] })
             //this.setState({end_all_game: true})
-            this.setState({end_current_game:true})
+            this.setState({end_game:true})
             this.DisplayScore(this.props.gamer.mail, this.state.step)
 
           
       
          }
-         DisplayScore(mail, step){
+          DisplayScore(mail, step){
             //if(this.props.end_game){
-                console.log(this.state.end_all_game)
+                //console.log(this.state.end_all_game)
               this.props.displayScore(mail,step+1)
              // this.setState({score: this.state.score.push(this.state.step)}) // enlever +1
-              this.setState({ score: [...this.state.score, this.state.step+1] })
-           // }
+              //this.setState({ score: [...this.state.score, this.state.step+1] })
+           }
 
-          }
+        //   }
          NewGame(){
             this.setState({
                 number: Math.floor(Math.random() * (99 -0 + 1)) +0,
                 step: 0,
             })
-            this.setState({end_current_game:false})
+            this.setState({end_game:false})
+           // this.setState({end_current_game:false})
             //this.setState({quit_game:false});
             //this.setState({end_all_game:false})
             //this.props.endGame(this.props.gamer.mail, this.state.score)
@@ -123,14 +125,27 @@ class Board extends Component {
          Quit(){
           //  this.setState({quit_game:true})
             this.props.quit(this.state.gamer.mail)
-         }
+          
+            
+            //this.handleChange();
+        }
     render() {
         var list_score=this.state.score.map((item, index) =>(<span key={index}>{item} </span>));
     //     const listItems = numbers.map((number) =>
     // <li>{number}</li>
-    if(this.state.end_current_game  || this.state.end_all_game){
+   
         // this.DisplayScore(this.props.gamer.mail, this.state.step);
         //this.EndGame(this.props.gamer.mail, this.state.score);
+        if(this.state.end_game){
+            return(<div>
+                <p>Gamer: {this.state.gamer.firstname}</p>
+                                <span >{this.state.number}</span>
+                                <button onClick={this.Quit} disabled={!this.Enabled()}>Quit</button> 
+                                <button onClick={this.NewGame} disabled={!this.Enabled()}>New Game</button>
+                                <p>Step: {this.state.step}</p>
+                                <p>Your Score: {list_score}</p>
+                                </div>);
+        }else{
         return (
             <div>
             <p>Gamer: {this.state.gamer.firstname}</p>
@@ -141,26 +156,11 @@ class Board extends Component {
             <button onClick={this.DividTwo}disabled={!this.Enabled()}>/2</button>
             <p>Step: {this.state.step}</p>
             <p>Your Score: {list_score}</p>
-            <button onClick={this.Quit} >Quit</button>
-            
+           
         </div>
-        );
-
-    }
-  //);
-        return (
-            <div>
-                <p>Gamer: {this.state.gamer.firstname}</p>
-                <span >{this.state.number}</span>
-                <button onClick={this.AddOne} disabled={!this.Enabled()}>+1</button>
-                <button onClick={this.MinusOne}disabled={!this.Enabled()}>-1</button>
-                <button onClick={this.MultiplyTwo}disabled={!this.Enabled()}>x2</button>
-                <button onClick={this.DividTwo}disabled={!this.Enabled()}>/2</button>
-                <p>Step: {this.state.step}</p>
-                <p>Your Score: {list_score}</p>
-            </div>
+     
             
-        );
+        );}
     }
 }
  
