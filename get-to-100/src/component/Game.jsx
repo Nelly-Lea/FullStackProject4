@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Board from './Board'
+import Historic from './Historic';
 class Game extends Component {
     constructor(props){
       super(props)
@@ -7,13 +8,33 @@ class Game extends Component {
         list_players:props.list_of_gamers,
         current_gamer:0,
         end_game:false,
+        list_record:null,
+        all_game_over:false,
       } ;
       this.ChangeCurrentPlayer=this.ChangeCurrentPlayer.bind(this)
       this.winGame=this.winGame.bind(this)
       this.DisplayScore=this.DisplayScore.bind(this)
       // this.EndGame=this.EndGame.bind(this)
       this.Quit=this.Quit.bind(this)
+      this.Records=this.Records.bind(this)
+      this. UpdateEnd=this.UpdateEnd.bind(this)
+      this.NewGame=this.NewGame.bind(this)
     }
+
+    updateGameStatus = () => {
+      const updatedPlayers = this.state.list_players.map(player => {
+        return {
+          ...player,
+          game_over: true
+        }
+      });
+    
+      this.setState({
+        list_players: updatedPlayers
+      });
+    };
+    
+    
     ChangeCurrentPlayer()
     {
       if(this.state.current_gamer==this.state.list_players.length-1){
@@ -61,6 +82,14 @@ class Game extends Component {
       
       }
     }
+    UpdateEnd(){
+      const list_players = [...this.state.list_players];
+      for(let i = 0; i < list_players.length; i++){
+        list_players[i].game_over=true;
+       }
+       this.setState({list_players})
+    }
+
     DisplayScore(mail, step){ // afficher les scores ds la liste
      // if(this.state.end_game){
       const list_players = [...this.state.list_players]; // create a copy of the outer list
@@ -74,6 +103,7 @@ class Game extends Component {
       }
       this.setState({list_players})
       console.log(this.state.list_players)
+      this.Records();
    // }
 
     }
@@ -100,10 +130,71 @@ class Game extends Component {
      //  console.log("quit appele")
     }
     
-    NewGame(){
-      this.forceUpdate();
-    }
+    NewGame(mail){
+      const list_players = [...this.state.list_players]; 
+      for(let i = 0; i < list_players.length; i++){
+        if(list_players[i].mail === mail)
+        {
+          list_players[i].game_over=false;
+          break;
+        }
+      }
+      this.setState({list_players})
 
+     // this.forceUpdate();
+    }
+    Records(){
+     var list_records=[]
+     const list_players = [...this.state.list_players]; // create a copy of the outer list
+     let max_len=0;
+     let index=0;
+     let n=0;
+     
+     if(list_players.length==0){
+      n=0
+     }else{
+      if(list_players.length==1){
+        n=1
+      }else{
+        if(list_players.length==2){
+          n=2
+        }else{
+          n=3
+        }
+      }
+     }
+     let average= list_players[this.state.current_gamer].list_game.reduce((a, b) => a + b) / list_players[this.state.current_gamer].list_game.length;;
+     for(let j=0; j<n;j++){
+      for(let i = 0; i < list_players.length; i++){
+        if(list_players[i].list_game.length > max_len){
+          max_len=list_players[i].list_game.length;
+          index=i;
+
+          //list_players[i].list_game = list_game;
+          //break
+        }
+          if(list_players[i].list_game.length == max_len&& list_players[i].list_game.length!=0)
+          {
+            if(list_players[i].list_game.reduce((a, b) => a + b) / list_players[i].list_game.length<average){
+              max_len=list_players[i].list_game.length;
+              index=i;
+              average=list_players[i].list_game.reduce((a, b) => a + b) / list_players[i].list_game.length;
+
+            }
+           
+          }
+        
+
+      }
+      max_len=0
+      list_records.push(list_players[index])
+      list_players.splice(index,1)
+      index=0;
+
+     }
+      this.setState({list_record:list_records})
+     //return list_record
+    }
     
     
     render(){
@@ -113,28 +204,40 @@ class Game extends Component {
       }
       
       const list_gamer = this.state.list_players.map((item, index) => (
-        <Board key={item.mail} displayScore={this.DisplayScore} quit={this.Quit} endGame={this.EndGame}
-         end_game={this.state.end_game} gamer={item} winGame={this.winGame} change_gamer={this.ChangeCurrentPlayer} current_gamer={this.state.current_gamer} index={index} />
+        <Board key={item.mail} end={item.game_over} NewGame={this.NewGame}UpdateEnd={this.UpdateEnd} displayScore={this.DisplayScore} quit={this.Quit} endGame={this.EndGame}
+         end_game={this.state.end_game} gamer={item} winGame={this.winGame} change_gamer={this.ChangeCurrentPlayer} current_gamer={this.state.current_gamer} index={index}
+         updateGameStatus={this.updateGameStatus} />
+         
       ));
+     // this.Records()
       // if(this.state.end_game){
       //   this.setState({end_game:false})
          
       // }
-      if(this.state.end_game){
-        return(
-          <div>
-              <button onClick={this.NewGame} >New Game</button>
-              <h1>Game page</h1>
-          <div>{list_gamer}</div>
-          </div>
-        )
+      // if(this.state.end_game){
+      //   return(
+      //     <div>
+      //         <button onClick={this.NewGame} >New Game</button>
+      //         <h1>Game page</h1>
+      //     <div>{list_gamer}</div>
+      //     </div>
+      //   )
         
-      }
+      // }
+      console.log("list des records", this.state.list_record)
       return (
         <div>
           <h1>Game page</h1>
           <div>{list_gamer}</div>
-        </div>
+          {this.state.list_record != null ? (
+      <div>
+        {this.state.list_record.length>=1? <div>First: {this.state.list_record[0].firstname}</div>:null}
+        {this.state.list_record.length>=2?<div>Second: {this.state.list_record[1].firstname}</div>:null}
+        {this.state.list_record.length==3?<div>Third: {this.state.list_record[2].firstname}</div>  :null}
+      </div>
+    ) : null}
+    {/* <div><Historic list_records={this.state.list_record}/></div> */}
+  </div>
       );
      
     //  // const list_players=this.state.list_players

@@ -43,6 +43,7 @@ class Sign_up extends Component {
             list_game:[],
             list_joueur:[],
             list_score:[],//
+            game_over:false,
           //  step:0,//
            // number:Math.floor(Math.random() * (99 -0 + 1)) +0,//
             //end_game:false,

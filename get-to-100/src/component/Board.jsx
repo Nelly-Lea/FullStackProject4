@@ -10,7 +10,8 @@ class Board extends Component {
             number: Math.floor(Math.random() * (99 -0 + 1)) +0,
             step: 0, 
             score:props.gamer.list_game,
-            end_game:false,
+            game_over_gamer:props.end
+           // end_game:false,
             // end_all_game: props.end_game,
             // end_current_game:false,
             // quit_game: false,
@@ -95,9 +96,12 @@ class Board extends Component {
 
             this.setState({ score: [...this.state.score, this.state.step + 1] })
             //this.setState({end_all_game: true})
-            this.setState({end_game:true})
+           // this.setState({end_game:true})
+           this.setState({game_over_gamer:true})
             this.DisplayScore(this.props.gamer.mail, this.state.step)
-
+          //  this.props.UpdateEnd();
+          const { updateGameStatus } = this.props;
+          updateGameStatus();
           
       
          }
@@ -115,7 +119,9 @@ class Board extends Component {
                 number: Math.floor(Math.random() * (99 -0 + 1)) +0,
                 step: 0,
             })
-            this.setState({end_game:false})
+            this.setState({game_over_gamer:false})
+            this.props.NewGame(this.state.gamer.mail)
+            //this.setState({end_game:false})
            // this.setState({end_current_game:false})
             //this.setState({quit_game:false});
             //this.setState({end_all_game:false})
@@ -136,7 +142,8 @@ class Board extends Component {
    
         // this.DisplayScore(this.props.gamer.mail, this.state.step);
         //this.EndGame(this.props.gamer.mail, this.state.score);
-        if(this.state.end_game){
+        // if(this.state.end_game){
+        if(this.props.gamer.game_over){
             return(<div>
                 <p>Gamer: {this.state.gamer.firstname}</p>
                                 <span >{this.state.number}</span>
@@ -144,6 +151,7 @@ class Board extends Component {
                                 <button onClick={this.NewGame} disabled={!this.Enabled()}>New Game</button>
                                 <p>Step: {this.state.step}</p>
                                 <p>Your Score: {list_score}</p>
+                                <p>end game ? {this.state.game_over_gamer}</p>
                                 </div>);
         }else{
         return (
