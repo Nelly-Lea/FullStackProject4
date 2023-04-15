@@ -151,7 +151,6 @@ class Board extends Component {
                                 <button onClick={this.NewGame} disabled={!this.Enabled()}>New Game</button>
                                 <p>Step: {this.state.step}</p>
                                 <p>Your Score: {list_score}</p>
-                                <p>end game ? {this.state.game_over_gamer}</p>
                                 </div>);
         }else{
         return (

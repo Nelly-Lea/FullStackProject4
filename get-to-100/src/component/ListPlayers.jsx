@@ -46,7 +46,7 @@ class ListPlayers extends Component {
     this.state = {
       list_of_player: props.list_gamers,
     };
-    this.NewGame = this.NewGame.bind(this);
+   // this.NewGame = this.NewGame.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -55,16 +55,16 @@ class ListPlayers extends Component {
     }
   }
 
-  NewGame() {
-    localStorage.clear();
-    this.setState({ list_of_player: null });
-  }
+  // NewGame() {
+  //   localStorage.clear();
+  //   this.setState({ list_of_player: null });
+  // }
 
   render() {
     if (this.state.list_of_player != null) {
       return (
         <div>
-          <button onClick={this.NewGame}>New Game</button>
+          {/* <button onClick={this.NewGame}>New Game</button> */}
           <ul className="list_players">
             {this.state.list_of_player.map((item, index) => (
               <li key={index}>
