@@ -1,4 +1,7 @@
-import React from 'react';
+//import React from 'react';
+//import '../styles.css'
+
+import React, {Component} from 'react';
 // import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
     BrowserRouter as Router,
@@ -9,16 +12,24 @@ import {
   } from "react-router-dom";
 import Game  from './Game';
 import Sign_up from './sign_up';
-
-const Main = () => {
-  return (
-    <Router>
-      <Routes>
-      <Route exact path="/" element={<Sign_up />} />
-        <Route path="/game" element={<Game />} />
-     </Routes>
-  </Router>
-  );
+class Main extends Component {
+  
+  render() { 
+    return ( <Sign_up  />);
+  }
 }
-console.log("Route configuration loaded"); 
+ 
 export default Main;
+// const Main = () => {
+//   return (
+//     <Sign_up className='salut'/>
+//   //   <Router>
+//   //     <Routes>
+//   //     <Route exact path="/" element={<Sign_up className='sign_up_background'/>} />
+//   //       <Route path="/game" element={<Game />} />
+//   //    </Routes>
+//   // </Router>
+//   );
+// }
+console.log("Route configuration loaded"); 
+//export default Main;

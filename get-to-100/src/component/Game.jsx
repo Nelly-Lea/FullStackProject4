@@ -240,15 +240,17 @@ class Game extends Component {
       if(list_gamer.length!=0){
       return (
         <div>
-          <h1>Game page</h1>
-          <div>{list_gamer}</div>
+          <h1 className='title_game'>Get to 100</h1>
           {this.state.list_record != null ? (
-      <div>
-        {this.state.list_record.length>=1? <div>First: {this.state.list_record[0].firstname}</div>:null}
-        {this.state.list_record.length>=2?<div>Second: {this.state.list_record[1].firstname}</div>:null}
-        {this.state.list_record.length==3?<div>Third: {this.state.list_record[2].firstname}</div>  :null}
+      <div className='best_players_div'> 
+        <p className='title_best_player'>The top 3 players</p>
+        {this.state.list_record.length>=1? <div className='best_player'>🥇 First: {this.state.list_record[0].firstname}</div>:null}
+        {this.state.list_record.length>=2?<div className='best_player'>🥈 Second: {this.state.list_record[1].firstname}</div>:null}
+        {this.state.list_record.length==3?<div className='best_player'>🥉 Third: {this.state.list_record[2].firstname}</div>  :null}
       </div>
     ) : null}
+          <div className='all_boards' >{list_gamer}</div>
+          
     {/* <div><Historic list_records={this.state.list_record}/></div> */}
   </div>
       );}

@@ -144,23 +144,24 @@ class Board extends Component {
         //this.EndGame(this.props.gamer.mail, this.state.score);
         // if(this.state.end_game){
         if(this.props.gamer.game_over){
-            return(<div>
+            return(<div className='board'>
                 <p>Gamer: {this.state.gamer.firstname}</p>
-                                <span >{this.state.number}</span>
-                                <button onClick={this.Quit} disabled={!this.Enabled()}>Quit</button> 
-                                <button onClick={this.NewGame} disabled={!this.Enabled()}>New Game</button>
+                                <span className='number' >{this.state.number}</span><br/><br/>
+                                <button className='button' onClick={this.Quit} disabled={!this.Enabled()}>Quit</button> 
+                                <button className='button' onClick={this.NewGame} disabled={!this.Enabled()}>New Game</button>
                                 <p>Step: {this.state.step}</p>
                                 <p>Your Score: {list_score}</p>
                                 </div>);
         }else{
         return (
-            <div>
+            <div className='board'>
+            {this.Enabled()?<p className='your_turn'>Your turn</p>:null}
             <p>Gamer: {this.state.gamer.firstname}</p>
-            <span >{this.state.number}</span>
-            <button onClick={this.AddOne} disabled={!this.Enabled()}>+1</button>
-            <button onClick={this.MinusOne}disabled={!this.Enabled()}>-1</button>
-            <button onClick={this.MultiplyTwo}disabled={!this.Enabled()}>x2</button>
-            <button onClick={this.DividTwo}disabled={!this.Enabled()}>/2</button>
+            <span  className='number'>{this.state.number}</span><br/><br/>
+            <button className='operation_button' onClick={this.AddOne} disabled={!this.Enabled()}>+1</button>
+            <button className='operation_button' onClick={this.MinusOne}disabled={!this.Enabled()}>-1</button>
+            <button className='operation_button' onClick={this.MultiplyTwo}disabled={!this.Enabled()}>x2</button>
+            <button className='operation_button' onClick={this.DividTwo}disabled={!this.Enabled()}>/2</button>
             <p>Step: {this.state.step}</p>
             <p>Your Score: {list_score}</p>
            

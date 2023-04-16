@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import '../styles.css'
+//import '../styles.css'
+//import '../styles.css'
 import { Link } from 'react-router-dom';
 import ListPlayers from './ListPlayers'
 import Game from './Game';
@@ -44,10 +45,6 @@ class Sign_up extends Component {
             list_joueur:[],
             list_score:[],//
             game_over:false,
-          //  step:0,//
-           // number:Math.floor(Math.random() * (99 -0 + 1)) +0,//
-            //end_game:false,
-           // enabled: this.state.enabled
         }
         this.setState({
             list_joueur: [...this.state.list_joueur, player],
@@ -56,22 +53,7 @@ class Sign_up extends Component {
             mail: '',
             
         });
-        //list_joueur.push(player)
-        // let list_of_player;
-        // list_of_player=JSON.parse(localStorage.getItem("list_of_player"));
-        // if(list_of_player!=null)
-        // { 
-        //     localStorage.removeItem("list_of_player")
-        //    // list_of_player.push(player);
-        //   //  localStorage.setItem("list_of_player", JSON.stringify(list_of_player));
-        // }//else{
-        // //     var new_list_player=[]
-        // //     player.enabled=true
-        // //     new_list_player.push(player)
-        // //     localStorage.setItem("list_of_player", JSON.stringify(new_list_player))
-        // // }
-        // localStorage.setItem("list_of_player", JSON.stringify([...this.state.list_joueur, player]))
-        // localStorage.setItem(this.state.mail, JSON.stringify(player));
+      
 
      } 
     PlayGame(){
@@ -81,8 +63,8 @@ class Sign_up extends Component {
         const {name, firstname, mail}=this.state;
         if(!this.state.play_game){
         return (
-            <div>
-                <p  className='title_game'>Welcome to Get to 100 Game</p>
+            <div className='sign_in_page'>
+                <p  className='title_game'>Welcome to Get to 100 Game 🎮</p>
                 <form className='form_registration' onSubmit={this.SubmitPlayer}> 
                     <label className='title_label'>
                         Last Name:
@@ -98,9 +80,10 @@ class Sign_up extends Component {
                         Mail:
                     </label><br />
                     <input className='input_field' type="email" value={this.state.mail} onChange={this.handleMailChange} required></input><br />
-                    <input className='submit_button' type="submit" value="Add Player"></input>
+                    <input className='submit_button' type="submit" value="Add Player"></input><br/><br/>
+                    <button className='play_button' onClick={this.PlayGame}>Play A Game</button>
                 </form>
-                <button onClick={this.PlayGame}>Play A Game</button>
+                
         
                 {/* <Link to="/game">
                     <button variant="outlined" >
@@ -111,7 +94,7 @@ class Sign_up extends Component {
                 <ListPlayers list_gamers={this.state.list_joueur} />
             </div>
         );}else{
-           return (<Game list_of_gamers={this.state.list_joueur}/>);
+           return (<div className="game_page"><Game  list_of_gamers={this.state.list_joueur}/></div>);
         }
     }
 }

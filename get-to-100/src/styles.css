@@ -1,8 +1,16 @@
-/* style of sign up page*/ 
+/* style of sign up page */ 
+.sign_up_background{
+  background-color: #4D26B6;
+  background: url("./images/game_page.webp")  no-repeat;
+ 
+}
+
 .title_game{
-  font-weight: bold;
+  color: white;
+  
   text-align: center;
   font-size: 50px;
+  font-family: 'Gajraj One', cursive;
 }
 .form_registration {
   width: 300px;
@@ -13,8 +21,9 @@
 }
 
 .title_label {
+  color: white;
  
-  font-weight: bold;
+  font-family: 'Gajraj One', cursive;
 }
 
 .input_field {
@@ -37,7 +46,8 @@
   color: white;
   font-size: 18px;
   border-radius: 20px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Gajraj One', cursive; 
+  /* font-family: 'Orbitron', sans-serif; */
 }
 
 .list_players{
@@ -45,12 +55,113 @@
   position: relative;
   padding: 12px 8px 12px 40px;
   list-style-type: none;
-  background: #eee;
+  background: #AFE5FC;
   font-size: 18px;
   transition: 0.2s;
   align-items: center;
   text-align: center;
-  
+  color: #4D26B6;
   font-size: 35px;
+  font-family: 'Gajraj One', cursive;
+  
+}
+
+.play_button{
+  text-align: center;
+  width: 280px;
+  height: 35px;
+  margin-top: 20px;
+  border: none;
+  background-color: #F356FF;
+  color: white;
+  font-size: 18px;
+  border-radius: 20px;
+  /* font-family: 'Orbitron', sans-serif; */
+  font-family: 'Gajraj One', cursive; 
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.sign_in_page{
+  background: url("./images/background_gaming.jpg")  no-repeat;
+  background-size: cover ;
+ margin: auto;
+}
+
+/* style game page*/
+.game_page{
+  /* background: url("./images/game_page.webp")  no-repeat; */
+  background-size: cover ;
+}
+.title_game{
+  color: white;
+  font-family: 'Gajraj One', cursive;
+  font-weight: bold;
+}
+.best_player{
+  font-family: 'Lemon', cursive;
+}
+.best_players_div{
+  display: inline;
+  float: right;
+  border:2px solid black;
+  border-radius: 12px;
+  padding: 5px;
+  background: #AFE5FC;
+  margin-right: 30px;
+  margin-top: 30px;
+}
+/*record*/
+.title_best_player{
+  font-family: 'Lemon', cursive;
+
+}
+
+/*board style*/
+.all_boards{
+  margin-left: 200px;
+}
+.board{
+  border:2px solid black;
+  border-radius: 12px;
+  padding: 5px;
+  background-color: #F356FF;
+  font-family: 'Lemon', cursive;
+  width: 50%;
+ text-align: center;
+  justify-content: center;
+  /* display: inline-block; */
+  /* float: left; */
+  
+}
+.your_turn{
+  color: navy
+}
+
+.number{
+  border:2px solid black;
+  border-radius: 8px;
+  padding: 5px;
+  background-color: #6FE2BC;
+}
+
+.operation_button{
+  background-color: #AFE5FC;
+  border:2px solid black;
+  border-radius: 8px;
+  padding: 5px;
+  margin: 2px;
+  font-weight: bold;
+  font-family: 'Lemon', cursive;
+}
+
+.button{
+  background-color: #AFE5FC;
+  border:2px solid black;
+  border-radius: 8px;
+  padding: 5px;
+  margin: 2px;
+  font-weight: bold;
+  font-family: 'Lemon', cursive;
 
 }

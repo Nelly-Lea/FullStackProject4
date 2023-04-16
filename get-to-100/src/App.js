@@ -10,11 +10,12 @@
 // }
 
 // export default App;
+// className="App" ds le div juste avant main
 import Main from './component/Main'
 function App() {
   return (
-    <div className="App">
-      <Main />
+    <div>
+      <Main  />
     </div>
   );
 }
