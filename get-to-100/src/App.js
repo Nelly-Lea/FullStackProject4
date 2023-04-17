@@ -10,11 +10,14 @@
 // }
 
 // export default App;
-import Main from './component/Main'
+// className="App" ds le div juste avant main
+//import Main from './component/Main'
+//import Sign_up from './component/sign_up';
+import Sign_up from './component/sign_up';
 function App() {
   return (
-    <div className="App">
-      <Main />
+    <div>
+      <Sign_up/>
     </div>
   );
 }
