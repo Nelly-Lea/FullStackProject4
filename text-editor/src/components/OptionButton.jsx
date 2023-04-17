@@ -3,8 +3,10 @@ import React, { Component } from 'react';
 class OptionButton extends Component {
     constructor(props) {
         super(props);
+        this.state = {isActive: false, class: this.props.class}
+
         this.handleButtonClick = this.handleButtonClick.bind(this); 
-        this.state = {isActive: false, id: this.props.option}
+        this.getIconClasses = this.getIconClasses.bind(this);
     }
 
     handleButtonClick () {
@@ -14,8 +16,8 @@ class OptionButton extends Component {
     render() { 
 
         return (
-            <button className={this.getButtonClasses()} id={this.state.id}>
-                <i className={this.getIconClasses}/>
+            <button className={this.getButtonClasses} id={this.state.option}>
+                <i className={'fa-solid fa-' + this.props.class}/>
             </button>
         );
     }
@@ -27,9 +29,7 @@ class OptionButton extends Component {
     }
 
     getIconClasses () {
-        let classes = "fa-solid fa-";
-        classes += this.state.id;
-        return classes;
+        return ('fa-solid fa-' + this.props.class);
     }
 }
  
