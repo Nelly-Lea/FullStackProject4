@@ -116,6 +116,18 @@
   font-family: 'Lemon', cursive;
 
 }
+.end_game{
+  font-family: 'Gajraj One', cursive; 
+  font-size: 50px;
+  text-align: center;
+}
+
+.new_game_button{
+
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
 
 /*board style*/
 .all_boards{

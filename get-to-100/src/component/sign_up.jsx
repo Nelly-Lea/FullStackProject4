@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-//import '../styles.css'
-//import '../styles.css'
 import { Link } from 'react-router-dom';
 import ListPlayers from './ListPlayers'
 import Game from './Game';
@@ -14,7 +12,6 @@ class Sign_up extends Component {
             mail:'',
             list_joueur:[],
             play_game:false,
-           // enabled:false
          };
     this.handleLastNameChange=this.handleLastNameChange.bind(this);
     this.handleFirstNameChange=this.handleFirstNameChange.bind(this);
@@ -22,7 +19,6 @@ class Sign_up extends Component {
     this.SubmitPlayer=this.SubmitPlayer.bind(this);
     this.PlayGame=this.PlayGame.bind(this);
 
-  //  this.NewGame=this.NewGame.bind(this);
    }
    
      handleLastNameChange(event){
@@ -43,7 +39,7 @@ class Sign_up extends Component {
             mail:this.state.mail,
             list_game:[],
             list_joueur:[],
-            list_score:[],//
+            list_score:[],
             game_over:false,
         }
         this.setState({
@@ -57,10 +53,14 @@ class Sign_up extends Component {
 
      } 
     PlayGame(){
-      this.setState({play_game:true})
+        if(this.state.list_joueur.length!=0){
+            this.setState({play_game:true})
+        }else{
+            alert("Please add at least one player")
+        }
+      
     }
     render() { 
-        const {name, firstname, mail}=this.state;
         if(!this.state.play_game){
         return (
             <div className='sign_in_page'>
@@ -81,15 +81,9 @@ class Sign_up extends Component {
                     </label><br />
                     <input className='input_field' type="email" value={this.state.mail} onChange={this.handleMailChange} required></input><br />
                     <input className='submit_button' type="submit" value="Add Player"></input><br/><br/>
-                    <button className='play_button' onClick={this.PlayGame}>Play A Game</button>
+                    <button className='play_button' onClick={this.PlayGame}>Start Games</button>
                 </form>
                 
-        
-                {/* <Link to="/game">
-                    <button variant="outlined" >
-                     Play Game
-                    </button>
-                </Link> */}
              
                 <ListPlayers list_gamers={this.state.list_joueur} />
             </div>

@@ -5,17 +5,12 @@ class Board extends Component {
     constructor(props){
         super(props)
         this.state = { 
-            //name:props.gamer.firstname,
             gamer:props.gamer,
             number: Math.floor(Math.random() * (99 -0 + 1)) +0,
             step: 0, 
             score:props.gamer.list_game,
-            game_over_gamer:props.end
-           // end_game:false,
-            // end_all_game: props.end_game,
-            // end_current_game:false,
-            // quit_game: false,
-           // enabled: props.gamer.enabled
+            game_over_gamer:props.end //lorsqu'un joueur gagne on arrete le jeu pour tous les autres
+            
          };
          this.handleChange=this.handleChange.bind(this);
          this.AddOne=this.AddOne.bind(this);
@@ -29,9 +24,6 @@ class Board extends Component {
          this.Enabled=this.Enabled.bind(this);
          
         }
-        // componentDidMount(){
-        //     this.DisplayScore(this.props.gamer.mail, this.state.step)
-        // }
          AddOne(){
             this.setState({number: this.state.number+1})
             this.setState({step: this.state.step+1})
@@ -41,11 +33,8 @@ class Board extends Component {
             }else{
                 this.handleChange();
             }
-           // this.DisplayScore(this.props.gamer.mail, this.state.step)
          }
          MinusOne(){
-          //  this.state.number--;
-           // this.state.step++;
            this.setState({number: this.state.number-1})
            this.setState({step: this.state.step+1})
            if(this.state.number-1==100){
@@ -57,8 +46,6 @@ class Board extends Component {
            
          }
          MultiplyTwo(){
-           // this.state.number=this.state.number*2;
-           //this.state.step++;
            this.setState({number: this.state.number*2})
             this.setState({step: this.state.step+1})
            if(this.state.number*2==100){
@@ -69,8 +56,6 @@ class Board extends Component {
          
          }
          DividTwo(){
-           // this.state.number=this.state.number/2;
-            //this.state.step++;
             this.setState({number: this.state.number/2})
             this.setState({step: this.state.step+1})
                if(this.state.number/2==100){
@@ -80,10 +65,10 @@ class Board extends Component {
             }
              
          }
-         handleChange(){
+         handleChange(){ // change gamer turn
             this.props.change_gamer()
          }
-         Enabled(){
+         Enabled(){ //disabled buttons of disabled gamer
             if(this.props.current_gamer==this.props.index){
                 return true
             }else{
@@ -91,58 +76,33 @@ class Board extends Component {
             }
            
          }
-         WinGame(){
-         // this.props.winGame(number, mail, step)
-
+         WinGame(){ 
             this.setState({ score: [...this.state.score, this.state.step + 1] })
-            //this.setState({end_all_game: true})
-           // this.setState({end_game:true})
            this.setState({game_over_gamer:true})
             this.DisplayScore(this.props.gamer.mail, this.state.step)
-          //  this.props.UpdateEnd();
-          const { updateGameStatus } = this.props;
-          updateGameStatus();
-          
-      
+            this.props.updateGameStatus();
+       
          }
-          DisplayScore(mail, step){
-            //if(this.props.end_game){
-                //console.log(this.state.end_all_game)
+          DisplayScore(mail, step){// display score of gamer 
               this.props.displayScore(mail,step+1)
-             // this.setState({score: this.state.score.push(this.state.step)}) // enlever +1
-              //this.setState({ score: [...this.state.score, this.state.step+1] })
+
            }
 
-        //   }
          NewGame(){
             this.setState({
                 number: Math.floor(Math.random() * (99 -0 + 1)) +0,
                 step: 0,
             })
-            this.setState({game_over_gamer:false})
+            this.setState({game_over_gamer:false}) // game is not over because it's new game
             this.props.NewGame(this.state.gamer.mail)
-            //this.setState({end_game:false})
-           // this.setState({end_current_game:false})
-            //this.setState({quit_game:false});
-            //this.setState({end_all_game:false})
-            //this.props.endGame(this.props.gamer.mail, this.state.score)
-
+            
          }
          Quit(){
-          //  this.setState({quit_game:true})
             this.props.quit(this.state.gamer.mail)
-          
-            
-            //this.handleChange();
+
         }
     render() {
         var list_score=this.state.score.map((item, index) =>(<span key={index}>{item} </span>));
-    //     const listItems = numbers.map((number) =>
-    // <li>{number}</li>
-   
-        // this.DisplayScore(this.props.gamer.mail, this.state.step);
-        //this.EndGame(this.props.gamer.mail, this.state.score);
-        // if(this.state.end_game){
         if(this.props.gamer.game_over){
             return(<div className='board'>
                 <p>Gamer: {this.state.gamer.firstname}</p>

@@ -1,29 +1,20 @@
 import React, {Component} from 'react';
 class Historic extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-          list_records:props.list_records,
-        //   first:props.list_records[0].firstname,
-        //   second:props.list_records[1].firstname,
-        //   third:props.list_records[2].firstname,
-        }
-    }
+
 
     render() { 
-        // console.log("list des records", this.state.list_records)
-        if(this.state.list_records!=null){
-        return (<div>
-            {this.state.list_records.length>=1?
-              <div>First: {this.state.list_records[0].firstname}</div>:null}
-              {this.state.list_records.length>=2?
-            <div>Second: {this.state.list_records[1].firstname}</div>:null}
-            {this.state.list_records.length==3?
-            <div>Third: {this.state.list_records[2].firstname}</div>: null  }
-        </div>);}
-        else{
-            return(<div></div>)
-        }
+       return(
+        <div>
+        {this.props.list_records != null ? (
+            <div className='best_players_div'> 
+              <p className='title_best_player'>The top 3 players</p>
+              {this.props.list_records.length>=1? <div className='best_player'>🥇 First: {this.props.list_records[0].firstname}</div>:null}
+              {this.props.list_records.length>=2?<div className='best_player'>🥈 Second: {this.props.list_records[1].firstname}</div>:null}
+              {this.props.list_records.length==3?<div className='best_player'>🥉 Third: {this.props.list_records[2].firstname}</div>  :null}
+            </div>
+          ) : null}
+          </div>
+       )
     }
 }
  
