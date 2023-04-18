@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 class TextInput extends Component {
-     
+    
     render() { 
-        return (<div id="text-input" contenteditable="true"></div>);
+        return (<div id="text-input" contentEditable="true"></div>);
     }
 }
  
