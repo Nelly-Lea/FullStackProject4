@@ -29,7 +29,7 @@ function TextFormatOptions(props) {
         {id: 4, value:"strikethrough"}];
     
     return textFormat.map(opt => 
-        (<><OptionButton key={opt.id} option={opt.value} bclass="format" /> </>));
+        (<OptionButton key={opt.id} option={opt.value} bclass="format" />));
 }
 
 function TextScriptOptions(props) { 
@@ -38,7 +38,7 @@ function TextScriptOptions(props) {
         {id: 6, value:"subscript"}];
     
     return textScript.map(opt => 
-        (<><OptionButton key={opt.id} option={opt.value} bclass="script" /> </>)) ;
+        (<OptionButton key={opt.id} option={opt.value} bclass="script" />)) ;
 }
 
 function ListOptions (props) {

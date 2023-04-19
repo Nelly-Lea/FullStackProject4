@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import EnglishKeyboard from './EnglishKeyboard';
 
 class Keyboards extends Component {
     constructor (props) {
@@ -9,7 +10,7 @@ class Keyboards extends Component {
 
         return (
             <div>
-                
+               <EnglishKeyboard /> 
             </div>
         );
     }
