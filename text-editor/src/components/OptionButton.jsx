@@ -16,6 +16,7 @@ class OptionButton extends Component {
         e.preventDefault();
         this.setState(prevState => ({isActive: !prevState.isActive}));
         console.log(btnId);
+        this.insertTextAtCaret(btnId);
         document.execCommand(btnId, false, null);
     }
 
@@ -48,6 +49,7 @@ class OptionButton extends Component {
         
         return classes;
     }
+
 }
  
 export default OptionButton;
