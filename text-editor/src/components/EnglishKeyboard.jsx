@@ -22,10 +22,10 @@ class EnglishKeyboard extends Component {
     render() { 
         return (
             <div id="keyboard" >
-                    <EnglishKeyboardRowOne isShift={this.state.isShift} className="row" />
-                    <EnglishKeyboardRowTwo isShift={this.state.isShift} className="row" />
-                    <EnglishKeyboardRowThree isShift={this.state.isShift} className="row" />
-                    <EnglishKeyboardRowFour isShift={this.state.isShift} className="row" />
+                    <EnglishKeyboardRowOne isShift={this.state.isShift}  />
+                    <EnglishKeyboardRowTwo isShift={this.state.isShift} />
+                    <EnglishKeyboardRowThree isShift={this.state.isShift} />
+                    <EnglishKeyboardRowFour isShift={this.state.isShift} onShift={this.handleShift}/>
                     <KeyboardButton className="space lastitem" value1=" " value2=" " />
             </div>
         );

@@ -31,7 +31,7 @@ class KeyboardButton extends Component {
     render() { 
         return (
             <button className={this.props.bclass}  
-            onClick={this.props.onShift ? this.props.onShift : (e) => this.handleButtonClick(this.valueToReturn(), e)}>
+            onClick={this.props.onShift !== undefined ? this.props.onShift : (e) => this.handleButtonClick(this.valueToReturn(), e)}>
                 {this.valueToReturn()}
             </button>
         );

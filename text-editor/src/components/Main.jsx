@@ -14,7 +14,7 @@ class Main extends Component {
                 <StyleLoader stylesheetPath="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
                 <Options />
                 <TextInput />
-                <EnglishKeyboard />
+                <Keyboards />
             </div>
         );
     }

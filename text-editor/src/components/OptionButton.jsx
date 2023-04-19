@@ -15,8 +15,6 @@ class OptionButton extends Component {
     handleButtonClick (btnId, e) {
         e.preventDefault();
         this.setState(prevState => ({isActive: !prevState.isActive}));
-        console.log(btnId);
-        this.insertTextAtCaret(btnId);
         document.execCommand(btnId, false, null);
     }
 
