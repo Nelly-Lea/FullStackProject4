@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import OptionButton from './OptionButton';
-import StyleLoader from './StyleLoader';
 
 class Options extends Component {
     constructor(props) {
