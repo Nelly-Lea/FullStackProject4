@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import OptionButton from './OptionButton';
+import AdvancedOptionButton from './AdvancedOptionButton';
 
 class Options extends Component {
     constructor(props) {
@@ -16,6 +17,10 @@ class Options extends Component {
                 <LinkOptions />
                 <AlignmentOptions />
                 <IndentOptions />
+                <AdvancedOptionButton id="formatBlock" />
+                <AdvancedOptionButton id="fontName" />
+                <AdvancedOptionButton id="fontSize" />
+                <AdvancedOptionButton id="color" />
             </div>          
         );
     }
