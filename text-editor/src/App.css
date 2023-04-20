@@ -40,14 +40,15 @@
 
 
 
-/*Mes Styles*/
+/*Options and Text Input Styles*/
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 body {
-  background-color: #338cf4;
+  background: linear-gradient(to right, #e93728, #ef6c21, #f7b617);
+  height: 100vh;
 }
 .container {
   background-color: #ffffff;
@@ -59,14 +60,17 @@ body {
   top: 50%;
   border-radius: 10px;
   box-shadow: 0 25px 50px rgba(7, 20, 35, 0.2);
+
+  margin-top: 15vh;
+  margin-bottom: 20vh;
 }
 .options {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 15px;
-  margin-top: 50px;
 }
+
 button {
   height: 28px;
   width: 28px;

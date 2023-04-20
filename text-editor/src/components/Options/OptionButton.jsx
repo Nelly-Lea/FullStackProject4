@@ -19,10 +19,10 @@ class OptionButton extends Component {
     }
 
     render() { 
-
+        
         return (
             <button className={this.getButtonClasses()} id={this.props.option} 
-                onClick={(e) => this.handleButtonClick(this.props.option, e)}>
+            onClick={this.props.onClick !== undefined ? this.props.onClick : (e) => this.handleButtonClick(this.props.option, e)}>
                 <i className={this.getIconClasses()}/>
             </button>
         );

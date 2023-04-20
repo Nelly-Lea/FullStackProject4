@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import EnglishKeyboard from './EnglishKeyboard';
-import HebrewKeyboard from './HebrewKeyboard';
+import EnglishKeyboard from './Keyboards/EnglishKeyboard';
+import HebrewKeyboard from './Keyboards/HebrewKeyboard';
 
 class Keyboards extends Component {
     constructor (props) {

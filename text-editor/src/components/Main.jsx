@@ -4,7 +4,6 @@ import Options from './Options'
 import StyleLoader from './StyleLoader';
 import TextInput from './TextInput';
 import Keyboards from './Keyboards';
-import EnglishKeyboard from './EnglishKeyboard';
 
 class Main extends Component {
 
