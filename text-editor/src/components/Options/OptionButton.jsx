@@ -33,7 +33,12 @@ class OptionButton extends Component {
         if (this.props.bclass) {
             classes += this.props.bclass;
         }
-        classes += this.state.isActive === true ? " active" : "";
+        
+        if(this.props.isActive) {
+            classes += " active";
+        } else {
+            classes += this.state.isActive === true ? " active" : "";
+        }
         return classes;
     }
 

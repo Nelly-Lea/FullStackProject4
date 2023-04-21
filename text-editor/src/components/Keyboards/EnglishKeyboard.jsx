@@ -26,7 +26,7 @@ class EnglishKeyboard extends Component {
                     <EnglishKeyboardRowTwo isShift={this.state.isShift} />
                     <EnglishKeyboardRowThree isShift={this.state.isShift} />
                     <EnglishKeyboardRowFour isShift={this.state.isShift} onShift={this.handleShift}/>
-                    <KeyboardButton className="space lastitem" value1=" " value2=" " />
+                    <KeyboardButton bclass="space lastitem" value1=" " value2=" " />
             </div>
         );
     }

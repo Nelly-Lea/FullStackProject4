@@ -134,7 +134,7 @@ input[type="color"]::-moz-color-swatch {
 
 #keyboard {
   margin-top: 20px;
-  padding: 3px;
+  padding: 10px 3px;
   list-style: none;
   display: flex;
   flex-wrap: wrap;
@@ -205,7 +205,8 @@ input[type="color"]::-moz-color-swatch {
 
 #keyboard .space {
   clear: left;
-  width: 681px;
+  width: 95vw;
+  margin: 0px 3px;
 }
 
 
