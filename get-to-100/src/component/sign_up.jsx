@@ -11,6 +11,7 @@ class Sign_up extends Component {
             firstname:'',
             mail:'',
             list_joueur:[],
+            list_player_historic:[],
             play_game:false,
          };
     this.handleLastNameChange=this.handleLastNameChange.bind(this);
@@ -38,9 +39,9 @@ class Sign_up extends Component {
             firstname:this.state.firstname,
             mail:this.state.mail,
             list_game:[],
-            list_joueur:[],
-            list_score:[],
-            game_over:false,
+          //  list_joueur:[],
+           // list_score:[],
+           // game_over:false,
         }
         this.setState({
             list_joueur: [...this.state.list_joueur, player],
@@ -48,6 +49,17 @@ class Sign_up extends Component {
             firstname: '',
             mail: '',
             
+        });
+        var player_historic={
+            lastname:this.state.lastname,
+            firstname:this.state.firstname,
+            mail:this.state.mail,
+            list_game:[],
+
+        }
+        this.setState({
+            list_player_historic: [...this.state.list_player_historic, player_historic],
+           
         });
       
 
@@ -88,7 +100,7 @@ class Sign_up extends Component {
                 <ListPlayers list_gamers={this.state.list_joueur} />
             </div>
         );}else{
-           return (<div className="game_page"><Game  list_of_gamers={this.state.list_joueur}/></div>);
+           return (<div className="game_page"><Game  list_of_gamers={this.state.list_joueur} list_player_historic={this.state.list_player_historic}/></div>);
         }
     }
 }
