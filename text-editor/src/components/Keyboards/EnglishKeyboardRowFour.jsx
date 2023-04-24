@@ -29,7 +29,7 @@ class EnglishKeyboardRowFour extends Component {
             value2={btn.value2} 
             bclass={btn.bclass}
             isShift={this.props.isShift}
-            onShift={btn.value1 === "shift"? this.props.onShift : null} />));
+            onClick={this.props.onClick} />));
     }
 }
  

@@ -21,7 +21,7 @@ class EnglishKeyboardRowThree extends Component {
         {id: 10, value1: "l", value2: "L"},
         {id: 11, value1:";", value2:":"},
         {id: 12, value1:"'", value2:"\""},
-        {id: 13, value1:"return", value2:"return", bclass:"return last item"}
+        {id: 13, value1:"enter", value2:"enter", bclass:"return last item"}
 
     ]
 
@@ -31,7 +31,8 @@ class EnglishKeyboardRowThree extends Component {
             value1={btn.value1} 
             value2={btn.value2} 
             bclass={btn.bclass}
-            isShift={this.props.isShift} />));
+            isShift={this.props.isShift}
+            onClick={this.props.onClick} />));
     }
 }
  

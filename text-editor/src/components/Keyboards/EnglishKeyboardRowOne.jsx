@@ -31,7 +31,8 @@ class EnglishKeyboardRowOne extends Component {
                 value1={btn.value1} 
                 value2={btn.value2} 
                 bclass={btn.bclass}
-                isShift={this.props.isShift} />));
+                isShift={this.props.isShift}
+                onClick={this.props.onClick} />));
     }
 }
  
