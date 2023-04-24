@@ -9,8 +9,8 @@ class Board extends Component {
             number: Math.floor(Math.random() * (99 -0 + 1)) +0,
             step: 0, 
             score:props.gamer.list_game,
-            game_over_gamer:props.end //lorsqu'un joueur gagne on arrete le jeu pour tous les autres
-            
+          //  game_over_gamer:props.end //lorsqu'un joueur gagne on arrete le jeu pour tous les autres
+            game_over:false,
          };
          this.handleChange=this.handleChange.bind(this);
          this.AddOne=this.AddOne.bind(this);
@@ -78,9 +78,10 @@ class Board extends Component {
          }
          WinGame(){ 
             this.setState({ score: [...this.state.score, this.state.step + 1] })
-           this.setState({game_over_gamer:true})
+         //  this.setState({game_over_gamer:true})
+         this.setState({game_over:true})
             this.DisplayScore(this.props.gamer.mail, this.state.step)
-            this.props.updateGameStatus();
+           // this.props.updateGameStatus();
        
          }
           DisplayScore(mail, step){// display score of gamer 
@@ -93,7 +94,8 @@ class Board extends Component {
                 number: Math.floor(Math.random() * (99 -0 + 1)) +0,
                 step: 0,
             })
-            this.setState({game_over_gamer:false}) // game is not over because it's new game
+           // this.setState({game_over_gamer:false}) // game is not over because it's new game
+           this.setState({game_over:false}) 
             this.props.NewGame(this.state.gamer.mail)
             
          }
@@ -103,7 +105,8 @@ class Board extends Component {
         }
     render() {
         var list_score=this.state.score.map((item, index) =>(<span key={index}>{item} </span>));
-        if(this.props.gamer.game_over){
+        // if(this.props.gamer.game_over){
+        if(this.state.game_over){
             return(<div className='board'>
                 <p>Gamer: {this.state.gamer.firstname}</p>
                                 <span className='number' >{this.state.number}</span><br/><br/>
