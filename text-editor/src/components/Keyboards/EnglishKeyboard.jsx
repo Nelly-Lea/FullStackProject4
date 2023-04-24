@@ -28,20 +28,45 @@ class EnglishKeyboard extends Component {
 
     handleButtonClick (char, e) {
         e.preventDefault();
-        if (char === 'shift') {
-            this.handleShift ();
-        } else if (char === 'caps lock') {
-            this.handleCapsLock ();
-        } else if(char === 'tab') {
-            this.insertTextAtCaret("\u00a0\u00a0\u00a0\u00a0");
-        } else if (char === 'delete') {
-            window.getSelection().deleteFromDocument();
-        } else {
-            this.insertTextAtCaret(char);
-            if (this.state.isShift && char !== 'enter') {
-                this.setState({isShift: false});
-            }
+        switch(char){
+            case 'shift': 
+                this.handleShift ();
+                break;
+            case 'caps lock':
+                this.handleCapsLock ();
+                break;
+            case 'tab':
+                this.insertTextAtCaret("\u00a0\u00a0\u00a0\u00a0");
+                break;
+            case  'delete':
+                window.getSelection().deleteFromDocument();
+                break;
+            case 'enter':
+                e.preventDefault(); //Prevent default browser behavior
+                if (window.getSelection) {
+                    var selection = window.getSelection(),
+                    range = selection.getRangeAt(0),
+                    br = document.createElement("br"),
+                    textNode = document.createTextNode("\u00a0"); //Passing " " directly will not end up being shown correctly
+                range.deleteContents();//required or not?
+                range.insertNode(br);
+                range.collapse(false);
+                range.insertNode(textNode);
+                range.selectNodeContents(textNode);
+            
+                selection.removeAllRanges();
+                selection.addRange(range);
+                }
+                break;
+            default:
+                this.insertTextAtCaret(char);
+                if (this.state.isShift && char !== 'enter') {
+                    this.setState({isShift: false});
+                }
         }
+
+
+        
     }
 
     insertTextAtCaret(text) {
@@ -74,33 +99,7 @@ class EnglishKeyboard extends Component {
 
 
 
-function RowFour (props) {
 
-    const keyButtons = [
-        {id: 13, value1:"shift", value2:"shift", bclass:"left-shift"},
-        {id: 14, value1: "z", value2: "A"},
-        {id: 15, value1: "x", value2: "S"},
-        {id: 16, value1: "c", value2: "D"},
-        {id: 17, value1: "v", value2: "F"},
-        {id: 18, value1: "b", value2: "G"},
-        {id: 19, value1: "n", value2: "H"},
-        {id: 20, value1: "m", value2: "J"},
-        {id: 24, value1:",", value2:"<"},
-        {id: 25, value1:".", value2:">"},
-        {id: 25, value1:"/", value2:"?"},
-        {id: 13, value1:"shift", value2:"shift", bclass:"right-shift lastitem"}
-    ]
-    
-    return keyButtons.map(btn =>  
-        (<KeyboardButton 
-            key={btn.id} 
-            value1={btn.value1} 
-            value2={btn.value2} 
-            bclass={btn.bclass}
-            isShift={this.props.isShift}
-            onShift={btn.value1 === "shift"? this.handleShift : null} />));
-
-}
 
 
 export default EnglishKeyboard;

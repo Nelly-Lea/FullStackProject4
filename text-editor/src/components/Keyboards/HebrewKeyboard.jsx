@@ -28,19 +28,41 @@ class HebrewKeyboard extends Component {
 
     handleButtonClick (char, e) {
         e.preventDefault();
-        if (char === 'shift') {
-            this.handleShift ();
-        } else if (char === 'caps lock') {
-            this.handleCapsLock ();
-        } else if(char === 'tab') {
-            this.insertTextAtCaret("\u00a0\u00a0\u00a0\u00a0");
-        } else if (char === 'delete') {
-            window.getSelection().deleteFromDocument();
-        } else {
-            this.insertTextAtCaret(char);
-            if (this.state.isShift && char !== 'enter') {
-                this.setState({isShift: false});
-            }
+        switch(char){
+            case 'shift': 
+                this.handleShift ();
+                break;
+            case 'caps lock':
+                this.handleCapsLock ();
+                break;
+            case 'tab':
+                this.insertTextAtCaret("\u00a0\u00a0\u00a0\u00a0");
+                break;
+            case  'delete':
+                window.getSelection().deleteFromDocument();
+                break;
+            case 'enter':
+                e.preventDefault(); //Prevent default browser behavior
+                if (window.getSelection) {
+                    var selection = window.getSelection(),
+                    range = selection.getRangeAt(0),
+                    br = document.createElement("br"),
+                    textNode = document.createTextNode("\u00a0"); //Passing " " directly will not end up being shown correctly
+                range.deleteContents();//required or not?
+                range.insertNode(br);
+                range.collapse(false);
+                range.insertNode(textNode);
+                range.selectNodeContents(textNode);
+            
+                selection.removeAllRanges();
+                selection.addRange(range);
+                }
+                break;
+            default:
+                this.insertTextAtCaret(char);
+                if (this.state.isShift && char !== 'enter') {
+                    this.setState({isShift: false});
+                }
         }
     }
 
