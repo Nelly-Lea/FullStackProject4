@@ -41,23 +41,7 @@ class EnglishKeyboard extends Component {
             case  'delete':
                 window.getSelection().deleteFromDocument();
                 break;
-            case 'enter':
-                e.preventDefault(); //Prevent default browser behavior
-                if (window.getSelection) {
-                    var selection = window.getSelection(),
-                    range = selection.getRangeAt(0),
-                    br = document.createElement("br"),
-                    textNode = document.createTextNode("\u00a0"); //Passing " " directly will not end up being shown correctly
-                range.deleteContents();//required or not?
-                range.insertNode(br);
-                range.collapse(false);
-                range.insertNode(textNode);
-                range.selectNodeContents(textNode);
-            
-                selection.removeAllRanges();
-                selection.addRange(range);
-                }
-                break;
+           
             default:
                 this.insertTextAtCaret(char);
                 if (this.state.isShift && char !== 'enter') {
@@ -76,13 +60,16 @@ class EnglishKeyboard extends Component {
             if (sel.getRangeAt && sel.rangeCount) {
                 range = sel.getRangeAt(0);
                 range.deleteContents();
-                range.insertNode( document.createTextNode(text !== "enter" ? text : "\u000d\u000a") );
+                range.insertNode(text !== "enter" ? document.createTextNode(text) : document.createElement("br"));
                 range.collapse(false);
             }
         } else if (document.selection && document.selection.createRange) {
             document.selection.createRange().text = text;
         }
     }
+
+
+
 
     render() { 
         return (
@@ -96,7 +83,6 @@ class EnglishKeyboard extends Component {
         );
     }
 }
-
 
 
 
