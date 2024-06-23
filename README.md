@@ -46,7 +46,7 @@ The repository contains 2 applications. To run the "Get to 100" multiplayer game
 
    ```sh
    git clone https://github.com/Nelly-Lea/FullStackProject4.git
-```
+   ```
 2.Navigate into the project directory:
 
 ```sh
@@ -68,6 +68,7 @@ yarn install
 
 ```sh
 npm start
+```
 or
 ```sh
 yarn start
